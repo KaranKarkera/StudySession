@@ -1,4 +1,4 @@
-Team Name: Thank you to Beyonce
+Team Name: Thank you to Beyonce /n
 Topic: Connect To Study
 The code is done in html, css, javascript. The attachment photos and videos are present along with the code. Download the complete repository and run the d4d_Main.html to start with the landing page.
 For further queries contact info:
