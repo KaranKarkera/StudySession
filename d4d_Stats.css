@@ -1,0 +1,139 @@
+/* General Reset */
+* {
+    font-family: 'Hero';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #fff; /* White text color */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Video Background */
+#background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 1%;
+    height: 1%;
+    z-index: -1;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    filter: brightness(50%);
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: transparent;
+    padding: 15px 30px;
+    padding-top: 2%;
+    text-align: right;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(100vh - 80px);
+    padding: 0 80px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Adjusting Left and Right Side Widths */
+.left-side {
+    flex: 1;
+    max-width: 50%;
+}
+
+.right-side {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Stats Bars */
+.stats-bars {
+    margin-top: 100px; /* Increased space between title and bars */
+}
+
+.stat-bar {
+    margin-bottom: 15px; /* Space between each stat bar */
+    position: relative; /* To position the inner bar */
+}
+
+.bar-container {
+    background-color: #e5e7eb; /* Light background for the bar container */
+    border-radius: 10px; /* Rounded corners for the container */
+    overflow: hidden; /* Hide overflow for smooth corners */
+    height: 20px; /* Keep the height same */
+    width: 80%; /* Reduced width for smaller bars */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    margin: 0 auto; /* Center the bar */
+}
+
+.bar {
+    height: 100%; /* Full height of the container */
+    background: linear-gradient(to right, #3b82f6, #2563eb); /* Gradient color for the stat bar */
+    transition: width 0.3s ease; /* Smooth transition for width change */
+    border-radius: 10px; /* Match the rounded corners */
+}
+
+/* Description Box */
+.description-box {
+    position: relative;
+    width: 100%; /* Full width for the description box */
+    background-color: rgba(0, 0, 0, 0.5); /* 50% opacity black background */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 2; /* Ensure it's above the video */
+    height: auto; /* Auto height based on content */
+    margin-top: 20px; /* Space above the description box */
+}
+
+.description-box h4 {
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.description-box p {
+    margin-bottom: 10px; /* Space between paragraphs */
+    color: #fff; /* Ensure description text is white */
+}
+
+/* Align current stats text */
+.current-stats {
+    text-align: center; /* Center the title */
+    margin-bottom: 10px; /* Space between title and bars */
+}

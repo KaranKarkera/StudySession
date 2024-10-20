@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Session Join</title>
+    <link rel="stylesheet" href="d4d_JoinStudy.css">
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source src="abstract-changes-in-form-4k-live.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="d4d_Main.html">Home</a></li>
+            <li><a href="d4d_Pets.html">Pets</a></li>
+            <li><a href="d4d_About.html">About</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="left-side">
+            <h1>Join A Study Session</h1>
+            <p class="quote">Enter the invite link to join session!</p>
+        </div>
+        <div class="right-side">
+            <input type="text" id="study-input" placeholder="Enter the link" />
+            <button class="primary-btn" id="join-button">Join Session</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('join-button').addEventListener('click', function() {
+            const input = document.getElementById('study-input').value;
+            if (input.trim() !== '') {
+                alert('Study session has been joined!');
+                window.location.href = 'https://youtu.be/dQw4w9WgXcQ?feature=shared'; // Change this to your desired URL
+            } else {
+                alert('Please enter a valid link.');
+            }
+        });
+    </script>
+</body>
+</html>

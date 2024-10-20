@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            font-family: 'Hero';
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow: auto; /* Allow scrolling */
+            height: 100vh; /* Ensure full viewport height */
+        }
+
+        /* Video Background */
+        #background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            filter: brightness(50%);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: transparent;
+            padding: 15px 30px;
+            text-align: right;
+            position: relative;
+            z-index: 1; /* Ensure navbar is above the video */
+        }
+
+        .navbar ul {
+            list-style-type: none;
+        }
+
+        .navbar ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1; /* Content above video */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 70px; /* Space for navbar */
+        }
+
+        /* Quote Section */
+        .quote-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            animation: fadeIn 1s ease;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            color: #f0a500;
+        }
+
+        /* Study Dashboard */
+        .session-details {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            color: #fff;
+        }
+
+        .session-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f0a500;
+        }
+
+        /* Music Player */
+        .music-player {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            color: #fff;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: #66B2FF;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2.5px;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #007BFF, #66B2FF);;
+            border-radius: 2.5px;
+            transition: width 0.1s ease;
+        }
+
+        /* Video Chat Section */
+        .video-chat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .video-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .chat-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            color: #fff; /* Chat messages color */
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: inherit;
+        }
+
+        .chat-input button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #007BFF, #66B2FF);;
+            color: white;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="abstract-changes-in-form-4k-live.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="d4d_Main.html">Home</a></li>
+            <li><a href="d4d_Stats.html">Stats</a></li>
+            <li><a href="d4d_About.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Quote Section -->
+        <div class="quote-section animate_animated animate_fadeIn">
+            <p class="quote-text">"The only way to do great work is to love what you do."</p>
+            <p class="quote-author">- Steve Jobs</p>
+        </div>
+
+        <!-- Study Dashboard -->
+        <div class="session-details">
+            <h2>Current Study Session</h2>
+            <div class="session-stats">
+                <div class="stat-card">
+                    <h3>Focus Time</h3>
+                    <div class="stat-value">2h 15m</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Tasks Completed</h3>
+                    <div class="stat-value">3/5</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Focus Score</h3>
+                    <div class="stat-value">85%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <h2>Focus Music</h2>
+            <div class="music-controls">
+                <button class="music-btn"><i class="fas fa-play"></i></button>
+                <button class="music-btn"><i class="fas fa-pause"></i></button>
+                <button class="music-btn"><i class="fas fa-stop"></i></button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 50%;"></div>
+            </div>
+        </div>
+
+        <!-- Video Chat Section -->
+        <div class="video-chat">
+            <div class="video-container">
+                <video controls  style="width: 100%;">
+                    <source src="1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="chat-container">
+                <div class="chat-messages">
+                    <p>User1: Hey there!</p>
+                    <p>User2: Let's study together!</p>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type a message...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="video-chat" >
+            <div class="chat-input" style="padding-top: 20px;justify-content: center;padding-left: 500px;">
+                <a href="d4d_Session2.html"><button style="border-radius: 10px;font-size: 20px;font-family:Hero;">More</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Hero';
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 120%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    filter: brightness(50%); /* Darken the video for better text visibility */
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content */
+    height: 100%;
+    padding: 40px 20px; /* Increased padding for better spacing */
+    backdrop-filter: blur(15px); /* Blurring background for depth */
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+    gap: 20px; /* Space between grid items */
+    width: 100%; /* Full width of the grid */
+    max-width: 800px; /* Optional: set a max width for the grid */
+}
+
+.video-box {
+    background-color: rgba(0, 0, 0, 0); /* Slightly transparent white background */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0); /* Larger shadow for depth */
+}
+
+video {
+    width: 100%; /* Make the video take full width of the box */
+    border-radius: 15px; /* Match the corners of the video with the box */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-top: 10px; /* Space between video and button */
+}
+
+.action-button {
+    padding: 12px 24px; /* Increased padding for comfort */
+    border: none;
+    border-radius: 10px; /* More rounded corners */
+    background: linear-gradient(45deg, #007BFF, #66B2FF); /* Gradient background */
+    color: white;
+    font-size: 16px; /* Increased font size */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.action-button:hover {
+    background: linear-gradient(45deg, #0056b3, #3E8EDE); /* Darker gradient on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}

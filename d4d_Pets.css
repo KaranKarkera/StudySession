@@ -1,0 +1,52 @@
+* { 
+    font-family: 'Hero';
+}
+/* Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+    margin-bottom: 50px; /* Add margin to allow space for scrolling */
+}
+
+/* Grid Item */
+.grid-item {
+    background-color: rgba(0, 0, 0, 0.766); /* Light background for contrast */
+    border-radius: 30px; /* Rounded corners */
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.794); /* Subtle shadow for depth */
+}
+
+.grid-item img {
+    width: auto; /* Make images responsive */
+    height: 300px; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.grid-item input {
+    width: calc(100% - 20px); /* Full width with padding consideration */
+    padding: 10px;
+    margin: 5px 0; /* Space between text boxes */
+    border: 1px rgba(0, 0, 0, 0); /* Light border */
+    border-radius: 5px; /* Rounded corners for input */
+    background-color: rgba(0, 0, 0, 0.3); /* Background color with 30% opacity */
+    color: #ffffff; /* White font color */
+    text-align: center; /* Center the text */
+    font-size: 20px;
+}
+
+/* Allow scrolling on the main content */
+.main-content {
+    height: auto; /* Allow height to adjust based on content */
+    padding: 20px; /* Add some padding */
+    position: relative; /* For layering */
+    z-index: 1; /* Ensure content is above video */
+}
+
+/* Adjust body to allow scrolling */
+body {
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative; /* Position relative for the video */
+}

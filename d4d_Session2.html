@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Flora - Study Together</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            font-family: 'Hero';
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: #fff;
+            line-height: 1.6;
+            overflow: auto;
+            height: 100vh;
+        }
+
+        /* Video Background */
+        #background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            filter: brightness(50%);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(0, 0, 0, 0.352);
+            padding: 15px 30px;
+            position: relative;
+            z-index: 1;
+            border-radius: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Code Button */
+        .code-button {
+            position: absolute;
+            right: 30px; /* Adjust as needed */
+            top: 15px; /* Adjust as needed */
+            background: linear-gradient(45deg, #ff5722, #ff8a00);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .code-button:hover {
+            background: linear-gradient(45deg, #ff8a00, #ff5722);
+            transform: scale(1.05);
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 70px;
+        }
+
+        /* Timer Section */
+        .timer-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timer {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: #f0a500; /* Highlight color */
+        }
+
+        .timer-controls button {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #007BFF, #66B2FF);
+            color: white;
+            transition: transform 0.2s ease;
+        }
+
+        .timer-controls button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Plant Animation */
+        .plant-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .plant {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .plant svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Progress Section */
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #007BFF, #66B2FF);
+            transition: width 0.3s ease;
+        }
+
+        /* Chat Section */
+        .chat-container {
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .message.sent {
+            background: linear-gradient(45deg, #007BFF, #66B2FF);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.received {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Notifications Section */
+        .notifications {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .notification {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source src="abstract-changes-in-form-4k-live.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <div class="container">
+        <nav>
+            <div class="nav-links">
+                <a href="#timer" class="nav-link">Timer</a>
+                <a href="#progress" class="nav-link">Progress</a>
+                <a href="#notifications" class="nav-link">Notifications</a>
+            </div>
+            <a href="d4d_Main.html" class="code-button">Stop Session</a>
+        </nav>
+
+        <div class="sections">
+            <div id="timer" class="section active">
+                <div class="timer-container">
+                    <h2>Focus Timer</h2>
+                    <div class="timer">25:00</div>
+                    <div class="timer-controls">
+                        <button>Take A Break</button>
+                    </div>
+                </div>
+
+                <div class="plant-container">
+                    <div class="plant">
+                        <svg viewBox="0 0 100 100">
+                            <path class="stem" d="M50 80 L50 40" stroke="green" stroke-width="2" fill="none"/>
+                            <circle class="leaf" cx="50" cy="40" r="5" fill="green"/>
+                            <circle class="leaf" cx="45" cy="45" r="5" fill="green"/>
+                            <circle class="leaf" cx="55" cy="45" r="5" fill="green"/>
+                        </svg>
+                    </div>
+                    <p>Focus Level: Growing!</p>
+                </div>
+            </div>
+
+            <div id="progress" class="section">
+                <h2>Study Progress</h2>
+                <div class="progress-container">
+                    <h3>Today's Focus</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div class="message received">Hey! Ready to study?</div>
+                    <div class="message sent">Yes! Let's focus on productivity today.</div>
+                </div>
+            </div>
+
+            <div id="notifications" class="section">
+                <h2>Study Reminders</h2>
+                <div class="notifications-list">
+                    <!-- Notifications will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notifications"></div>
+
+    <script>
+        let timer;
+        let timeLeft = 1500; // 25 minutes in seconds
+        let isRunning = false;
+        let plantGrowth = 0;
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
